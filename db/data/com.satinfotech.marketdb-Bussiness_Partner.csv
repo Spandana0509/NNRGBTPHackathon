@@ -1,0 +1,2 @@
+ID,bpno,city,name,state,Address1,Address2,pin,gstn,is_gstn_registered,is_vendor,is_customer
+30d899d7-f185-41ca-a17d-05bb5cc975b3,1,Hyderabad,spandana,TS,Hyderabad,Hyderabad,500088,27ABCDE1234F1Z,yes,yes,yes

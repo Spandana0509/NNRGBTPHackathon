@@ -1,0 +1,43 @@
+{
+  "name": "NNRGHackathon",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.4"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-masterdata": "cds watch --open masterdata/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-transactionaldata": "cds watch --open transactionaldata/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-purchase": "cds watch --open purchase/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-sales": "cds watch --open sales/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "fiori": {
+      "lean_draft": true,
+      "bypass_draft": true
+    },
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": "db.sqlite"
+        }
+      }
+    }
+  },
+  "sapux": [
+    "app/masterdata",
+    "app/transactionaldata",
+    "app/purchase",
+    "app/sales"
+  ]
+}

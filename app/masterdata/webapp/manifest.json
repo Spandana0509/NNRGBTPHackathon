@@ -1,0 +1,164 @@
+{
+  "_version": "1.1.0",
+  "sap.app": {
+    "id": "masterdata",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.12.2",
+      "toolsId": "eb1cd076-0cd2-4d9c-b732-98516d583ed4"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/market-db/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.6",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "masterdata.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "Bussiness_PartnerList",
+          "target": "Bussiness_PartnerList"
+        },
+        {
+          "pattern": "Bussiness_Partner({key}):?query:",
+          "name": "Bussiness_PartnerObjectPage",
+          "target": "Bussiness_PartnerObjectPage"
+        }
+      ],
+      "targets": {
+        "Bussiness_PartnerList": {
+          "type": "Component",
+          "id": "Bussiness_PartnerList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "initialLoad": "Enabled",
+              "contextPath": "/Bussiness_Partner",
+              "variantManagement": "Page",
+              "navigation": {
+                "Bussiness_Partner": {
+                  "detail": {
+                    "route": "Bussiness_PartnerObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "actions": {
+                    "Bussiness_PartnerListExt": {
+                      "press": "masterdata.ext.bussiness_PartnerListExt.Bussiness_PartnerListExt.SetVendor",
+                      "visible": true,
+                      "enabled": true,
+                      "requiresSelection": true,
+                      "text": "Set Vendor"
+                    },
+                    "Bussiness_PartnerListExtension": {
+                      "press": "masterdata.ext.bussiness_PartnerListExtension.Bussiness_PartnerListExtension.SetCustomer",
+                      "visible": true,
+                      "enabled": true,
+                      "requiresSelection": true,
+                      "text": "Set Customer"
+                    },
+                    "Bussiness_PartnerListfile": {
+                      "press": "masterdata.ext.bussiness_PartnerListfile.Bussiness_PartnerListfile.SetGstn",
+                      "visible": true,
+                      "enabled": true,
+                      "requiresSelection": true,
+                      "text": "Set GSTN"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Bussiness_PartnerObjectPage": {
+          "type": "Component",
+          "id": "Bussiness_PartnerObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "initialLoad": "enabled",
+              "editableHeaderContent": false,
+              "contextPath": "/Bussiness_Partner"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
